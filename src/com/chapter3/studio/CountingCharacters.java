@@ -1,11 +1,20 @@
 package com.chapter3.studio;
 
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
+import java.util.Scanner;
 
 public class CountingCharacters {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws FileNotFoundException {
 
-        String str = "test";
+        File fileText = new File("string.txt");
+        Scanner sc = new Scanner(fileText);
+        String str = sc.nextLine();
+        sc.close();
+
         char[] charactersInString = str.toCharArray();
         HashMap<Character,Integer> characterCounts = new HashMap<>();
 
@@ -17,7 +26,9 @@ public class CountingCharacters {
                 characterCounts.put(c, 1);
             }
 
-            System.out.println(characterCounts);
+            for (Character ch : characterCounts.keySet()) {
+                System.out.println(ch + ": " + characterCounts.get(ch));
+            }
         }
     }
 }
